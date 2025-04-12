@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hoteles.Dominio.Entidades
 {
-    public class Cliente : BasePersona
+    public class Empleado : BasePersona
     {
-        
+       //tipoempleado
     }
 }

@@ -11,5 +11,6 @@ namespace Hoteles.Dominio.Entidades
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public int Capacidad { get; set; }
+        public bool Activo { get; set; }
     }
 }
