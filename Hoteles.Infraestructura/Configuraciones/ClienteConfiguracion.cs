@@ -37,5 +37,23 @@ namespace Hoteles.Infraestructura.Configuraciones
             builder.Property(c => c.Activo)
                    .HasDefaultValue(true); // Activo por defecto
         }
+
+        /*
+        public void Configure(EntityTypeBuilder<Cliente> builder)
+    {
+        builder.ToTable("Cliente");
+ 
+        builder.HasKey(c => c.Id);
+ 
+        builder.Property(c => c.Nombre)
+               .IsRequired()
+               .HasMaxLength(200);
+ 
+        builder.Property(c => c.Email)
+               .IsRequired()
+               .HasMaxLength(200);
+    } 
+
+         */
     }
 }

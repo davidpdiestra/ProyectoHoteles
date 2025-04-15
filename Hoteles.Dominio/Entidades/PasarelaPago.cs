@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hoteles.Dominio.Entidades
 {
-    public class Cliente : BasePersona
+    public class PasarelaPago
     {
-        public ICollection<Reserva> Reservas { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public ICollection<Pago> Pagos { get; set; }
     }
 }

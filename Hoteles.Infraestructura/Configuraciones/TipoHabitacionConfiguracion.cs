@@ -26,6 +26,10 @@ namespace Hoteles.Infraestructura.Configuraciones
 
             builder.Property(c => c.Activo)
                    .HasDefaultValue(true);
+
+            builder.HasMany(th => th.Habitaciones)
+                   .WithOne(h => h.TipoHabitacion)
+                   .HasForeignKey(h => h.TipoHabitacionId);
         }
     }
 }

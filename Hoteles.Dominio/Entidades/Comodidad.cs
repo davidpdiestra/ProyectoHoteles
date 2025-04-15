@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hoteles.Dominio.Entidades
 {
-    public class TipoHabitacion
+    public class Comodidad
     {
         public int Id { get; set; }
+        public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public int Capacidad { get; set; }
-        public bool Activo { get; set; }
-        public ICollection<Habitacion> Habitaciones { get; set; }
-
+        public ICollection<HabitacionComodidad> HabitacionComodidades { get; set; }
     }
 }
