@@ -1,8 +1,8 @@
-﻿using Hoteles.Aplicacion.Proceso.Cliente.Create;
-using Hoteles.Aplicacion.Proceso.Cliente.Delete;
-using Hoteles.Aplicacion.Proceso.Cliente.Get;
-using Hoteles.Aplicacion.Proceso.Cliente.GetById;
-using Hoteles.Aplicacion.Proceso.Cliente.Update;
+﻿using Hoteles.Aplicacion.Proceso.Pagos.Create;
+using Hoteles.Aplicacion.Proceso.Pagos.Delete;
+using Hoteles.Aplicacion.Proceso.Pagos.Get;
+using Hoteles.Aplicacion.Proceso.Pagos.GetById;
+using Hoteles.Aplicacion.Proceso.Pagos.Update;
 using Hoteles.Dominio.Entidades;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,38 +11,38 @@ namespace Hoteles.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClienteController : ControllerBase
+    public class PagosController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ClienteController(IMediator mediator)
+        public PagosController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create([FromBody] CrearClienteCommand command)
+        public async Task<ActionResult<int>> Create([FromBody] CrearPagoCommand command)
         {
             var id = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id }, id);
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Pago>>> GetAll()
         {
-            var result = await _mediator.Send(new ObtenerClientesQuery());
+            var result = await _mediator.Send(new ObtenerPagosQuery());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetById(int id)
+        public async Task<ActionResult<Pago>> GetById(int id)
         {
-            var result = await _mediator.Send(new ObtenerClientePorIdQuery { Id = id });
+            var result = await _mediator.Send(new ObtenerPagoPorIdQuery { Id = id });
             return result != null ? Ok(result) : NotFound();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, ActualizarClienteCommand command)
+        public async Task<IActionResult> Update(int id, ActualizarPagoCommand command)
         {
             if (id != command.Id) return BadRequest();
             var success = await _mediator.Send(command);
@@ -52,7 +52,7 @@ namespace Hoteles.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var success = await _mediator.Send(new EliminarClienteCommand { Id = id });
+            var success = await _mediator.Send(new EliminarPagoCommand { Id = id });
             return success ? NoContent() : NotFound();
         }
     }

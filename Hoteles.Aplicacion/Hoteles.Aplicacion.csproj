@@ -14,4 +14,11 @@
     <ProjectReference Include="..\Hoteles.Dominio\Hoteles.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Proceso\ReservaCompleta\Delete\" />
+    <Folder Include="Proceso\ReservaCompleta\GetById\" />
+    <Folder Include="Proceso\ReservaCompleta\Get\" />
+    <Folder Include="Proceso\ReservaCompleta\Update\" />
+  </ItemGroup>
+
 </Project>
