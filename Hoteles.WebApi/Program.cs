@@ -1,3 +1,5 @@
+using Hoteles.Aplicacion;
+using Hoteles.Aplicacion.Interfaces.Persistencia;
 using Hoteles.Infraestructura.Persistencia;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,16 @@ builder.Services.AddControllers();
 //Configuracion de Base Datos
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+
+// Registrar MediatR (escanea toda la capa de Application)
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly);
+});
+
+builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
